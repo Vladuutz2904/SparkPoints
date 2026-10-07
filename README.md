@@ -3,6 +3,8 @@
 Sistem de premium points pentru Spigot/Bukkit 1.8.x - 1.21 (Java 8+).
 Optional: PlaceholderAPI (pentru DeluxeMenus).
 
+Creat de **Vladuutz** (Discord: _vladuu_). Compatibil Minecraft 1.8 pana la ultima versiune (Java 8+).
+
 ## Build
     mvn clean package
 Jar-ul ajunge in `target/SparkPoints-1.0.0.jar` -> pui in `plugins/`.

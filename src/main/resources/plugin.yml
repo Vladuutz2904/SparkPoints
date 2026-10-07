@@ -1,8 +1,9 @@
 name: SparkPoints
 version: ${project.version}
 main: net.sparkpoints.SparkPoints
-author: Spark
+author: Vladuutz
 description: Sistem de premium points cu suport PlaceholderAPI / DeluxeMenus
+api-version: '1.13'
 softdepend: [PlaceholderAPI]
 
 commands:
@@ -10,6 +11,10 @@ commands:
     description: Comanda principala SparkPoints
     aliases: [sp, sparkp, points, punctespark, sparkpuncte]
     usage: /<command> [help]
+  spforall:
+    description: Da puncte tuturor jucatorilor conectati
+    aliases: [sparkpointsall]
+    usage: /<command> <suma>
 
 permissions:
   sparkpoints.use:

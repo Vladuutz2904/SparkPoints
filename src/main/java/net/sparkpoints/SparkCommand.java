@@ -24,6 +24,10 @@ public class SparkCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         PointsManager m = plugin.getManager();
 
+        if (command.getName().equalsIgnoreCase("spforall")) {
+            return forAll(sender, args);
+        }
+
         if (args.length == 0) {
             return balance(sender, null);
         }
@@ -33,6 +37,13 @@ public class SparkCommand implements CommandExecutor, TabCompleter {
             case "help":
             case "ajutor":
                 for (String line : plugin.msgList("help")) sender.sendMessage(line);
+                sender.sendMessage(plugin.color("&8Plugin facut de &6Vladuutz &8- &7/sp credits"));
+                return true;
+
+            case "credits":
+            case "about":
+            case "creator":
+                credits(sender);
                 return true;
 
             case "balance":
@@ -221,6 +232,52 @@ public class SparkCommand implements CommandExecutor, TabCompleter {
         return true;
     }
 
+    // ---------- /sp credits ----------
+
+    private void credits(CommandSender sender) {
+        sender.sendMessage(plugin.color("&8&m-----&r &6&lSpark&e&lPoints &8&m-----"));
+        sender.sendMessage(plugin.color("&7Versiune: &f" + plugin.getDescription().getVersion()));
+        sender.sendMessage(plugin.color("&7Creat de: " + SparkPoints.CREATOR));
+        sender.sendMessage(plugin.color("&7Discord: &f_vladuu_"));
+        sender.sendMessage(plugin.color("&7Designer pentru servere de Minecraft: logouri, site-uri si store-uri."));
+        sender.sendMessage(plugin.color("&8&m---------------------------"));
+    }
+
+    // ---------- /spforall <suma> ----------
+
+    private boolean forAll(CommandSender sender, String[] args) {
+        PointsManager m = plugin.getManager();
+
+        if (!sender.hasPermission("sparkpoints.admin")) {
+            sender.sendMessage(plugin.msg("no-permission"));
+            return true;
+        }
+        if (args.length < 1) {
+            sender.sendMessage(plugin.msg("forall-usage"));
+            return true;
+        }
+        long amount = parse(args[0]);
+        if (amount <= 0) {
+            sender.sendMessage(plugin.msg("invalid-amount"));
+            return true;
+        }
+
+        int count = 0;
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            m.touch(p.getUniqueId(), p.getName());
+            long total = m.add(p.getUniqueId(), amount);
+            p.sendMessage(plugin.msg("forall-received",
+                    "{player}", sender.getName(),
+                    "{amount}", m.format(amount),
+                    "{points}", m.format(total)));
+            count++;
+        }
+        sender.sendMessage(plugin.msg("forall-sent",
+                "{amount}", m.format(amount),
+                "{count}", String.valueOf(count)));
+        return true;
+    }
+
     // ---------- utilitare ----------
 
     private long parse(String s) {
@@ -244,7 +301,7 @@ public class SparkCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> out = new ArrayList<>();
         if (args.length == 1) {
-            List<String> subs = new ArrayList<>(Arrays.asList("help", "balance", "top", "pay"));
+            List<String> subs = new ArrayList<>(Arrays.asList("help", "balance", "top", "pay", "credits"));
             if (sender.hasPermission("sparkpoints.admin")) subs.addAll(Arrays.asList("give", "take", "set", "reload"));
             for (String s : subs) if (s.startsWith(args[0].toLowerCase())) out.add(s);
         } else if (args.length == 2) {

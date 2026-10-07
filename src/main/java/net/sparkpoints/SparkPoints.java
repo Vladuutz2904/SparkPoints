@@ -2,6 +2,7 @@ package net.sparkpoints;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,6 +21,11 @@ public class SparkPoints extends JavaPlugin implements Listener {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
+        // adauga mesajele noi in config-urile mai vechi
+        if (!getConfig().contains("messages.forall-sent")) {
+            getConfig().options().copyDefaults(true);
+            saveConfig();
+        }
 
         manager = new PointsManager(this);
         manager.load();
@@ -27,6 +33,7 @@ public class SparkPoints extends JavaPlugin implements Listener {
         SparkCommand cmd = new SparkCommand(this);
         getCommand("sparkpoints").setExecutor(cmd);
         getCommand("sparkpoints").setTabCompleter(cmd);
+        getCommand("spforall").setExecutor(cmd);
 
         Bukkit.getPluginManager().registerEvents(this, this);
 
@@ -39,7 +46,22 @@ public class SparkPoints extends JavaPlugin implements Listener {
 
         long period = Math.max(10, getConfig().getLong("autosave-seconds", 300)) * 20L;
         Bukkit.getScheduler().runTaskTimer(this, () -> manager.save(), period, period);
+
+        printBanner();
     }
+
+    private void printBanner() {
+        ConsoleCommandSender c = Bukkit.getConsoleSender();
+        c.sendMessage(color("&8------------------------------------"));
+        c.sendMessage(color("&6&lSpark&e&lPoints &7v" + getDescription().getVersion() + " &apornit"));
+        c.sendMessage(color("&7Creat cu pasiune de " + CREATOR));
+        c.sendMessage(color("&7Discord: &f_vladuu_"));
+        c.sendMessage(color("&7Server: &f" + Bukkit.getBukkitVersion()));
+        c.sendMessage(color("&8------------------------------------"));
+    }
+
+    /** "Vladuutz" in degrade rosu-auriu. */
+    public static final String CREATOR = "&4&lV&c&ll&6&la&e&ld&e&lu&6&lu&c&lt&4&lz";
 
     @Override
     public void onDisable() {

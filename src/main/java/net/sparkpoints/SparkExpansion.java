@@ -29,7 +29,7 @@ public class SparkExpansion extends PlaceholderExpansion {
 
     @Override
     public String getAuthor() {
-        return "Spark";
+        return "Vladuutz";
     }
 
     @Override

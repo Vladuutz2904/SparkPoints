@@ -39,6 +39,9 @@ messages:
   top-header: "&8&m-----&r &6&lTop SparkPoints &8&m-----"
   top-line: "&e#{pos} &f{player} &8- &6{points}"
   top-empty: "&7Nimeni nu are puncte inca."
+  forall-usage: "{prefix}&cFoloseste: &f/spforall <suma>"
+  forall-sent: "{prefix}Ai dat &e{amount} &7SparkPoints la &f{count} &7jucători conectați."
+  forall-received: "{prefix}&f{player} &7a dat &e{amount} &7SparkPoints tuturor! (total: &e{points}&7)"
   reloaded: "{prefix}Config reincarcat."
   help:
     - "&8&m-----&r &6&lSparkPoints &8&m-----"
@@ -47,4 +50,5 @@ messages:
     - "&e/sp pay <jucator> <suma> &7- trimite puncte"
     - "&e/sp top &7- clasament"
     - "&c/sp give|take|set <jucator> <suma> &7- admin"
+    - "&c/spforall <suma> &7- da puncte tuturor celor conectati"
     - "&c/sp reload &7- admin"
