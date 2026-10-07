@@ -1,0 +1,29 @@
+name: SparkPoints
+version: ${project.version}
+main: net.sparkpoints.SparkPoints
+author: Spark
+description: Sistem de premium points cu suport PlaceholderAPI / DeluxeMenus
+softdepend: [PlaceholderAPI]
+
+commands:
+  sparkpoints:
+    description: Comanda principala SparkPoints
+    aliases: [sp, sparkp, points, punctespark, sparkpuncte]
+    usage: /<command> [help]
+
+permissions:
+  sparkpoints.use:
+    description: Vezi propriile puncte
+    default: true
+  sparkpoints.others:
+    description: Vezi punctele altor jucatori
+    default: true
+  sparkpoints.pay:
+    description: Trimite puncte altor jucatori
+    default: true
+  sparkpoints.top:
+    description: Vezi top-ul
+    default: true
+  sparkpoints.admin:
+    description: give / take / set / reload
+    default: op

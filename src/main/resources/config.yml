@@ -1,0 +1,50 @@
+# ============================================
+#   SparkPoints - config
+# ============================================
+
+# Punctele cu care incepe un jucator nou
+starting-points: 0
+
+# Separator de mii pentru %sparkpoints_points_formatted% (ex: 1.250)
+number-separator: "."
+
+# Cat de des (in secunde) se salveaza datele pe disc
+autosave-seconds: 300
+
+# Dupa cate secunde se reface top-ul (cache)
+top-cache-seconds: 10
+
+# Anunta jucatorul cand primeste/pierde puncte de la admin / consola
+notify-target: true
+
+messages:
+  prefix: "&8[&6&lSpark&e&lPoints&8] &7"
+  no-permission: "{prefix}&cNu ai permisiune."
+  players-only: "{prefix}&cComanda asta e doar pentru jucatori."
+  player-not-found: "{prefix}&cJucatorul &f{player} &cnu a fost gasit."
+  invalid-amount: "{prefix}&cSuma trebuie sa fie un numar pozitiv."
+  balance-self: "{prefix}Ai &e{points} &7SparkPoints."
+  balance-other: "{prefix}&f{player} &7are &e{points} &7SparkPoints."
+  given: "{prefix}I-ai dat lui &f{player} &e{amount} &7SparkPoints. (total: &e{points}&7)"
+  taken: "{prefix}I-ai luat lui &f{player} &e{amount} &7SparkPoints. (total: &e{points}&7)"
+  set: "{prefix}Ai setat punctele lui &f{player} &7la &e{points}&7."
+  not-enough-target: "{prefix}&f{player} &cnu are destule puncte (&f{points}&c)."
+  target-received: "{prefix}Ai primit &e{amount} &7SparkPoints. (total: &e{points}&7)"
+  target-lost: "{prefix}Ai pierdut &e{amount} &7SparkPoints. (total: &e{points}&7)"
+  target-set: "{prefix}Punctele tale au fost setate la &e{points}&7."
+  pay-self: "{prefix}&cNu iti poti trimite puncte tie.."
+  pay-not-enough: "{prefix}&cNu ai destule puncte. Ai doar &f{points}&c."
+  pay-sent: "{prefix}I-ai trimis lui &f{player} &e{amount} &7SparkPoints."
+  pay-received: "{prefix}Ai primit &e{amount} &7SparkPoints de la &f{player}&7."
+  top-header: "&8&m-----&r &6&lTop SparkPoints &8&m-----"
+  top-line: "&e#{pos} &f{player} &8- &6{points}"
+  top-empty: "&7Nimeni nu are puncte inca."
+  reloaded: "{prefix}Config reincarcat."
+  help:
+    - "&8&m-----&r &6&lSparkPoints &8&m-----"
+    - "&e/sp &7- vezi punctele tale"
+    - "&e/sp balance [jucator] &7- vezi punctele cuiva"
+    - "&e/sp pay <jucator> <suma> &7- trimite puncte"
+    - "&e/sp top &7- clasament"
+    - "&c/sp give|take|set <jucator> <suma> &7- admin"
+    - "&c/sp reload &7- admin"
